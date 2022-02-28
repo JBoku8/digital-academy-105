@@ -1,13 +1,18 @@
-import Greeting from './Greeting';
-import Welcome from './Welcome';
+import { Header } from './components/header';
+import { Footer } from './components/footer';
+
+// import { Home } from './pages/home';
+import { Products } from './pages/products';
 
 import './App.css';
+// Tree Shaking
 
 function App() {
   return (
-    <div className="App">
-      <Welcome user="James Bond" age={50} />
-      <Greeting title="Test Message" subTitle="subtitle" />
+    <div className="App container">
+      <Header />
+      <Products />
+      <Footer />
     </div>
   );
 }
