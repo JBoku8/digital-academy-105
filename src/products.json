@@ -7,6 +7,18 @@
   },
   {
     "category": "ხილეულობა",
+    "name": "ვაშლი 2",
+    "price": 3,
+    "stock": true
+  },
+  {
+    "category": "ხილეულობა",
+    "name": "ვაშლი 3",
+    "price": 2.4,
+    "stock": false
+  },
+  {
+    "category": "ხილეულობა",
     "name": "ქლიავი",
     "price": 3,
     "stock": false
@@ -15,6 +27,18 @@
     "category": "ბოსტნეული",
     "name": "პომიდორი",
     "price": 3,
+    "stock": true
+  },
+  {
+    "category": "ბოსტნეული",
+    "name": "პომიდორი 1",
+    "price": 4.3,
+    "stock": true
+  },
+  {
+    "category": "ბოსტნეული",
+    "name": "პომიდორი 2",
+    "price": 5,
     "stock": true
   },
   {

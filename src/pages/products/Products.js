@@ -1,21 +1,15 @@
 import { useState } from 'react';
-import productsData from '../../products.json';
+// import debounce from 'lodash/debounce';
 
-export const ProductItem = ({ product }) => {
-  return (
-    <div>
-      <h4>
-        {product.name}, ღირებულება - ${product.price}
-      </h4>
-      <h6>
-        {product.stock ? 'მარაგშია' : 'არ არის მარაგში'}, კატეგორია - {product.category}
-      </h6>
-    </div>
-  );
-};
+import { ProductItem } from './ProductItem';
+import { Button, TextInput, Form } from '../../atoms';
+import { Collapsible } from '../../components/collapsible';
+import productsData from '../../products.json';
 
 export const Products = () => {
   const [inStockOnly, setInStockOnly] = useState(false);
+  const [filterTerm, setFilterTerm] = useState('');
+  // TODO grouping by the category
   //   const renderProducts = () => {
   //       const rows = [];
   //       let lastCategory = null;
@@ -27,10 +21,16 @@ export const Products = () => {
   //       })
   //   }
 
+  console.log('__Products_RENDERING__');
+
   const renderProducts = () => {
     let data = productsData.slice();
     if (inStockOnly) {
-      data = productsData.filter((item) => item.stock);
+      data = data.filter((item) => item.stock);
+    }
+
+    if (filterTerm) {
+      data = data.filter((el) => el.name.includes(filterTerm));
     }
 
     return data.map((item, index) => {
@@ -38,14 +38,33 @@ export const Products = () => {
     });
   };
 
+  const handleFilterChange = ({ target }) => {
+    setFilterTerm(target.value);
+  };
+
   return (
     <div className="row shadow my-3 p-3">
       <h3>Products</h3>
-      <button className="btn btn-outline-primary" onClick={() => setInStockOnly(!inStockOnly)}>
-        მაჩვენე მარაგში მყოფი პროდუქცია
-      </button>
+      <Form>
+        <div className="mb-3 row">
+          <div className="col-8">
+            <TextInput value={filterTerm} onChange={handleFilterChange} placeholder="ძიება..." />
+          </div>
+          <div className="col-4">
+            <Button
+              className="btn btn-outline-primary"
+              type="button"
+              onClick={() => setInStockOnly(!inStockOnly)}
+            >
+              {inStockOnly ? '✅ მაჩვენე სრული პროდუქცია' : '🚀 მაჩვენე მარაგში მყოფი პროდუქცია'}
+            </Button>
+          </div>
+        </div>
+      </Form>
       <hr />
-      {renderProducts()}
+      <Collapsible closedTitle="მაჩვენე პროდუქცია" openedTitle="დამალე პროდუქცია">
+        {renderProducts()}
+      </Collapsible>
     </div>
   );
 };
