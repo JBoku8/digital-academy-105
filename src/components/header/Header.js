@@ -1,11 +1,17 @@
+import { useContext } from 'react';
+
+import { CartContext } from '../../providers/CartProvider';
+
 import './header.css';
 
-export const Header = (props) => {
+export const Header = () => {
+  const { cart } = useContext(CartContext);
+  console.log('__CART__', cart);
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             Navbar
           </a>
           <button
@@ -22,13 +28,19 @@ export const Header = (props) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/node_modules">
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/">
                   Link
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  <span className="font-weight-bold">CART TOTAL</span>:{' '}
+                  <span>{cart.total === 0 ? 'Empty' : `💰${Math.round(cart.total)}`}</span>
                 </a>
               </li>
             </ul>
