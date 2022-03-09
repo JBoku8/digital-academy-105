@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react';
-import { CartContext } from '../../providers/CartProvider';
+import { useState } from 'react';
+import { useCart } from '../../providers/CartProvider';
 import { Alert, Button } from '../../atoms';
 
 import './ProductItem.css';
@@ -9,7 +9,7 @@ export const ProductItem = ({ product }) => {
     addNewItem,
     removeItem,
     cart: { items: cartItems },
-  } = useContext(CartContext);
+  } = useCart();
   const [outOfStock, setOutOfStock] = useState(false);
   const isInCart = product.id in cartItems;
 

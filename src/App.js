@@ -2,10 +2,8 @@ import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Layout } from './components/layout';
 
-// import { Home } from './pages/home';
-import { Products } from './pages/products';
 import { CartProvider } from './providers/CartProvider';
-
+import { Routes } from './Routes';
 import './App.css';
 // Tree Shaking
 
@@ -14,7 +12,7 @@ function App() {
     <CartProvider>
       <Layout className="App">
         <Header />
-        <Products />
+        <Routes />
         <Footer />
       </Layout>
     </CartProvider>
