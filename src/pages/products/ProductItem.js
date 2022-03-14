@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import { useCart } from '../../providers/CartProvider';
 import { Alert, Button } from '../../atoms';
 
@@ -11,7 +13,6 @@ export const ProductItem = ({ product }) => {
     cart: { items: cartItems },
   } = useCart();
   const [outOfStock, setOutOfStock] = useState(false);
-  const isInCart = product.id in cartItems;
 
   const handleAddToCart = () => {
     if (product.stock) {
@@ -20,6 +21,11 @@ export const ProductItem = ({ product }) => {
       setOutOfStock(true);
     }
   };
+
+  if (!product) {
+    return null;
+  }
+  const isInCart = product.id in cartItems;
 
   return (
     <div className="card mb-1 productItem--card">
@@ -56,4 +62,8 @@ export const ProductItem = ({ product }) => {
       </div>
     </div>
   );
+};
+
+ProductItem.propTypes = {
+  product: PropTypes.object.isRequired,
 };

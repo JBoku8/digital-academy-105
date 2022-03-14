@@ -1,20 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ProductTable } from '../../components/table';
 
 export const ShoppingCart = () => {
-  const [value, setValue] = useState();
-
-  // Component each Re-Render
-  // useEffect(() => {
-  //   console.log('SHOPPING CART');
-  // });
-
   // Component first Render - once
   useEffect(() => {
     console.log('AJAX Request, started');
     const timerId = setTimeout(() => {
       console.log('AJAX Request, finished');
-      setValue(Math.random());
     }, 3000);
 
     return () => {
@@ -23,13 +15,9 @@ export const ShoppingCart = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   console.log('SHOPPING CART');
-  // }, [value]);
-
   return (
     <div className="row">
-      <h2 onClick={() => setValue(Math.random())}>Shopping Cart ✅👌🛒</h2>
+      <h2>Shopping Cart ✅👌🛒</h2>
       <div className="col-12">
         <ProductTable />
       </div>

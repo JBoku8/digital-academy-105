@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import debounce from 'lodash/debounce';
 
 import { ProductItem } from './ProductItem';
 import { Button, TextInput, Form } from '../../atoms';
 import { Collapsible } from '../../components/collapsible';
+import { useLocalStorage, useDebounce } from '../../hooks';
+
 import productsData from '../../products.json';
 
 export const Products = () => {
   const [inStockOnly, setInStockOnly] = useState(false);
-  const [filterTerm, setFilterTerm] = useState('');
+  const [result, setResult] = useState(productsData.slice());
+  const [filterTerm, setFilterTerm] = useLocalStorage('super-app:filter-term', '');
+  const pausedSearch = useDebounce(filterTerm, 400);
+
   // TODO grouping by the category
   //   const renderProducts = () => {
   //       const rows = [];
@@ -21,16 +26,22 @@ export const Products = () => {
   //       })
   //   }
 
-  console.log('__Products_RENDERING__');
+  useEffect(() => {
+    if (pausedSearch) {
+      const data = productsData.filter((el) =>
+        el.name.toLowerCase().includes(pausedSearch.toLowerCase())
+      );
+      setResult(data);
+    } else {
+      setResult(productsData.slice());
+    }
+  }, [pausedSearch]);
 
   const renderProducts = () => {
-    let data = productsData.slice();
+    console.log('__Products_RENDERING__');
+    let data = result.slice();
     if (inStockOnly) {
-      data = data.filter((item) => item.stock);
-    }
-
-    if (filterTerm) {
-      data = data.filter((el) => el.name.includes(filterTerm));
+      data = result.filter((item) => item.stock);
     }
 
     return data.map((item, index) => {

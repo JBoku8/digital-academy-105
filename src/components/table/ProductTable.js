@@ -1,25 +1,5 @@
 import { useCart } from '../../providers/CartProvider';
-
-import { Button } from '../../atoms';
-
-export const ProductTableRow = ({ name, price, qty, id, onCartAdd, onCartRemove }) => {
-  return (
-    <tr>
-      <th scope="row">{id}</th>
-      <td>{name}</td>
-      <td>{price}</td>
-      <td>
-        რაოდენობა: {qty}, სულ: {price * qty}
-      </td>
-      <td>
-        <div className="btn-group">
-          <Button className="btn btn-outline-success" text="➕" onClick={onCartAdd} />
-          <Button className="btn btn-outline-warning" text="🗑" onClick={onCartRemove} />
-        </div>
-      </td>
-    </tr>
-  );
-};
+import { ProductTableRow } from './ProductTableRow';
 
 export const ProductTable = () => {
   const { addNewItem, removeItem, cart } = useCart();
@@ -47,7 +27,7 @@ export const ProductTable = () => {
         <ProductTableRow
           key={`product-${productId}`}
           {...item}
-          id={productId}
+          id={+productId}
           onCartAdd={() => addNewItem(currentItem)}
           onCartRemove={() => removeItem(currentItem)}
         />
