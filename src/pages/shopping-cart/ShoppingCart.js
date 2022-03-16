@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
+
 import { ProductTable } from '../../components/table';
+import { Loader } from '../../atoms';
+import { useRequireAuth } from '../../hooks';
 
 export const ShoppingCart = () => {
+  const auth = useRequireAuth();
   // Component first Render - once
   useEffect(() => {
     console.log('AJAX Request, started');
@@ -14,6 +18,10 @@ export const ShoppingCart = () => {
       clearTimeout(timerId);
     };
   }, []);
+
+  if (!auth) {
+    return <Loader />;
+  }
 
   return (
     <div className="row">
