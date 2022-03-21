@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
 import { LeftNavigation } from './LeftNavigation';
-import './header.css';
 import { RightNavigation } from './RightNavigation';
+import './header.css';
 
 export const Header = () => {
   return (

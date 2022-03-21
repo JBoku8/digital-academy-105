@@ -16,6 +16,8 @@ export const loginAsync = async (data) => {
 
 export const registerAsync = async (data) => {
   try {
+    const response = await axios.post(`/register`, data);
+    return response.data;
   } catch (e) {
     console.log('__registerAsync_Error', e);
     return null;

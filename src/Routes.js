@@ -6,6 +6,7 @@ import { Layout } from './components/layout';
 import { Home } from './pages/home';
 import { Login } from './pages/login';
 import { Register } from './pages/register';
+import Profile from './pages/profile';
 import { NoMatch } from './pages/NoMatch';
 import * as routes from './utils/routePaths';
 
@@ -33,6 +34,7 @@ export const Routes = () => {
             </Suspense>
           }
         />
+        <Route path={routes.PROFILE_PATH} element={<Profile title="Page Title" />} />
         <Route path={routes.LOGIN_PATH} element={<Login />} />
         <Route path={routes.REGISTER_PATH} element={<Register />} />
 

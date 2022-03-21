@@ -2,7 +2,13 @@ export const Button = ({ className, text, onClick, type = 'button', disabled, ch
   const buttonContent = children ? children : text;
 
   return (
-    <button className={className} onClick={onClick} type={type} disabled={disabled}>
+    <button
+      className={className}
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+      data-testid="buttonElement"
+    >
       {buttonContent}
     </button>
   );
