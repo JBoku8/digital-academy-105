@@ -1,12 +1,12 @@
 import { memo } from 'react';
 
-const ProfileChildComponent = () => {
-  console.log('__CHILD_COMPONENT_RENDERING__');
-  const fs = Math.round(Math.random() * 40) + 10;
+const ProfileChildComponent = ({ params, onClick }) => {
+  console.log('__CHILD_COMPONENT_RENDERING__', params.color);
+
   return (
     <h3
       style={{
-        fontSize: fs,
+        color: params.color,
       }}
     >
       Child Component
@@ -15,3 +15,8 @@ const ProfileChildComponent = () => {
 };
 
 export default memo(ProfileChildComponent);
+/**
+ * (prevProps, nextProps) => {
+  return prevProps.params.color === nextProps.params.color;
+}
+ */
