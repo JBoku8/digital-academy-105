@@ -7,6 +7,9 @@ import reportWebVitals from './reportWebVitals';
 
 import './index.css';
 
+// console.log(process.env.NODE_ENV);
+// console.log(process.env.REACT_APP_API_BASE_URL);
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
